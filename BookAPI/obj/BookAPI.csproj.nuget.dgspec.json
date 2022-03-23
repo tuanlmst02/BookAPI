@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\This PC\\Desktop\\BookAPI\\BookAPI\\BookAPI.csproj": {}
+    "D:\\New folder\\BookAPI\\BookAPI\\BookAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\This PC\\Desktop\\BookAPI\\BookAPI\\BookAPI.csproj": {
+    "D:\\New folder\\BookAPI\\BookAPI\\BookAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\This PC\\Desktop\\BookAPI\\BookAPI\\BookAPI.csproj",
+        "projectUniqueName": "D:\\New folder\\BookAPI\\BookAPI\\BookAPI.csproj",
         "projectName": "BookAPI",
-        "projectPath": "C:\\Users\\This PC\\Desktop\\BookAPI\\BookAPI\\BookAPI.csproj",
+        "projectPath": "D:\\New folder\\BookAPI\\BookAPI\\BookAPI.csproj",
         "packagesPath": "C:\\Users\\This PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\This PC\\Desktop\\BookAPI\\BookAPI\\obj\\",
+        "outputPath": "D:\\New folder\\BookAPI\\BookAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\This PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,13 +40,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.2, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.16.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.16.0, )"
             }
           },
           "imports": [

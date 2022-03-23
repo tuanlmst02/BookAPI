@@ -29,9 +29,9 @@ namespace BookAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserCred userCred)
+        public IActionResult Authenticate([FromBody] User user)
         {
-            var token = jwtAuthenticationManager.Authenticate(userCred.Username, userCred.Password);
+            var token = jwtAuthenticationManager.Authenticate(user.Username, user.Password);
             if(token == null)
                 return Unauthorized();
             return Ok(token);
