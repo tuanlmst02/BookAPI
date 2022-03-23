@@ -1,6 +1,10 @@
+using BookAPI;
 using BookAPI.Models;
 using BookAPI.Responsitories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IBookResponsitory, BookResponsitory>();
 builder.Services.AddDbContext<BookContext>(o => o.UseSqlite("Data source=books.db"));
 builder.Services.AddControllers();
+var key = "This is my test key";
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
+builder.Services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,6 +45,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -56,8 +56,10 @@ namespace BookAPI.Controllers
 
                 isSaveSuccess = true;
             }
-            catch (Exception e)
+            catch
             {
+                isSaveSuccess = false;
+                throw;
             }
 
             return isSaveSuccess;
